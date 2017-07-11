@@ -7,11 +7,11 @@
           <form>
             <div class="form-group">
               <label for="title">Title</label>
-              <input type="text" class="form-control" id="title">
+              <input type="text" v-model="article.title" class="form-control" id="title">
             </div>
             <div class="form-group">
               <label for="content">Content</label>
-              <textarea class="form-control" rows="5" id="comment"></textarea>
+              <textarea v-model="article.content" class="form-control" rows="5" id="comment"></textarea>
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
             <button type="button" class="btn btn-default" @click="cancel">Cancel</button>
@@ -29,12 +29,24 @@ export default {
   name: 'articleDetail',
   data() {
     return {
+      article: {},
     };
   },
   methods: {
     cancel() {
       this.$router.push({ path: '/articles' });
     },
+  },
+  mounted() {
+    const articleId = this.$route.params.id;
+    this.$http.get(`http://localhost:3000/api/articles/${articleId}`)
+    .then((response) => {
+      this.article = response.data;
+    })
+    .catch((error) => {
+      throw error;
+      // console.log(error);
+    });
   },
 };
 </script>
