@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Hello from '@/components/Hello';
+import Home from '@/components/Home';
 import Main from '@/components/Main';
 import ArticleList from '@/components/ArticleList';
 import ArticleDetail from '@/components/ArticleDetail';
@@ -15,6 +15,11 @@ export default new Router({
       component: Main,
       children: [
         {
+          path: '',
+          name: 'Home',
+          component: Home,
+        },
+        {
           path: '/articles',
           name: 'ArticleList',
           component: ArticleList,
@@ -25,11 +30,6 @@ export default new Router({
           component: ArticleDetail,
         },
       ],
-    },
-    {
-      path: '/hello',
-      name: 'Hello',
-      component: Hello,
     },
   ],
 });
