@@ -1,11 +1,13 @@
 <template>
     <div class="short-article">
       <ul class="list-group">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Morbi leo risus</li>
-        <li class="list-group-item">Porta ac consectetur ac</li>
-        <li class="list-group-item">Vestibulum at eros</li>
+        <router-link
+          v-for="article, index in articles"
+          class="list-group-item"
+          :to="'/articles/' + article._id"
+          :key="index">
+          {{ article.title }}
+        </router-link>
       </ul>
     </div>
 </template>
@@ -13,6 +15,7 @@
 <script>
 export default {
   name: 'shortArticle',
+  props: ['articles'],
   data() {
     return {
     };
