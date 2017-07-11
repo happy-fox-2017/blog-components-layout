@@ -1,6 +1,6 @@
 <template>
      <div class="">
-          <div v-for="listartikel in listartikels">
+          <div>
                <div class="col-md-9">
                  <div class="thumbnail">
                   <h2>{{ listartikel.title }}</h2>
@@ -22,22 +22,30 @@ export default {
   name: 'blogdetail',
   data () {
     return {
-      listartikels: []
+      listartikel: {},
+      transitionName: 'slide-left'
     }
+  },
+  beforeRouteUpdate (to, from, next) {
+    const toDepth = to.path.split('/').length
+    const fromDepth = from.path.split('/').length
+    this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+    next()
   },
   methods: {
     getArtikel () {
+      let idartikel = this.$route.params.id
       let self = this
-      axios.get('http://localhost:3000/api/artikels')
+      axios.get('http://localhost:3000/api/artikels/' + idartikel)
            .then((response) => {
-             self.listartikels = response.data
+             self.listartikel = response.data
            })
          .catch((err) => {
            console.log(err)
          })
     }
   },
-  created () {
+  mounted () {
     this.getArtikel()
   }
 }
