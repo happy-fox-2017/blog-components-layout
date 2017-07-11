@@ -22,8 +22,7 @@ export default {
   name: 'blogdetail',
   data () {
     return {
-      listartikel: {},
-      transitionName: 'slide-left'
+      listartikel: {}
     }
   },
   watch: {
@@ -43,6 +42,9 @@ export default {
            console.log(err)
          })
     }
+  },
+  created () {
+    this.getArtikel()
   }
 }
 </script>

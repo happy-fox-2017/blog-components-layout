@@ -6,9 +6,7 @@
                    <li class="list-group-item"><router-link :to=" '/blog/artikel/'+artikel._id"> {{ artikel.title }}</router-link></li>
                  </ul>
             </div>
-            <transition :name="transitionName">
                  <router-view></router-view>
-            </transition>
           </div>
 
      </div>
