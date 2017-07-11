@@ -1,6 +1,8 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <h1><b>Welcome Full Stack Developer</b></h1>
+    <hr>
+    <br>
     <img src="../assets/fullstack.jpg" alt="">
 
   </div>
