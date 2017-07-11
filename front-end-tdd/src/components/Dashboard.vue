@@ -38,6 +38,11 @@
 <script>
 export default {
   name: 'dashboard',
+  data () {
+    return {
+      listArtikel: ''
+    }
+  },
   mounted () {
     var self = this
     this.$http.get('http://localhost:3000/api/artikel')
