@@ -6,7 +6,7 @@
                    <li class="list-group-item"><router-link :to=" '/blog/artikel/'+artikel._id"> {{ artikel.title }}</router-link></li>
                  </ul>
             </div>
-                 <router-view></router-view>
+                 <router-view :artikels="listartikels"></router-view>
           </div>
 
      </div>
@@ -15,6 +15,7 @@
 import axios from 'axios'
 export default {
   name: 'blog',
+  // props: ['listartikels'],
   data () {
     return {
       listartikels: []

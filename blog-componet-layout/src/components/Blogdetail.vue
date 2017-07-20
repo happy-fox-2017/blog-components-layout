@@ -10,6 +10,7 @@
                          <h5>{{ listartikel.author }}</h5>
                      </div>
                    </a>
+                   <button type="button" name="button" v-on:click="deleteArtikel(listartikel._id)">Delete Artikel</button>
                  </div>
                </div>
           </div>
@@ -41,6 +42,20 @@ export default {
          .catch((err) => {
            console.log(err)
          })
+    },
+    deleteArtikel (id) {
+     //  let id = this.$route.params.id
+      let self = this
+      var index = this.listartikels.findIndex(lists => lists._id === id)
+      self.listartikels.splice(index, 1)
+      axios.delete(`http://localhost:3000/api/artikels/${id}`)
+       .then((response) => {
+         self.msgStatus = true
+         self.message = response.data.msg
+       })
+       .catch((err) => {
+         console.log(err)
+       })
     }
   },
   created () {
